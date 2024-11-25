@@ -8,14 +8,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import egov.test.component.KakaoAuthComponent;
 import egov.test.config.ApiConfig;
 import reactor.core.publisher.Mono;
 
-@Controller
+@RestController
 public class KakaoController {
 	
 	private final WebClient webClient;
@@ -30,6 +33,19 @@ public class KakaoController {
         this.apiConfig = apiConfig;
         this.webClient = webClientBuilder.baseUrl(apiConfig.getApiUrlAuthCheck()).build();
     }
+	
+	@RequestMapping("/quickHome.do")
+	public String quickHome() {
+		return "/jsp/quickHome";
+	}
+	
+	@RequestMapping("/test")
+	@GetMapping("/{name}")
+	public String testFunction(@PathVariable String name) {
+		String returnValue = "test return value RESTAPI: " + name;
+		
+		return returnValue;
+	}
 	
 	@RequestMapping(value = "/hello.do")
 	public String hello(Model model) {
