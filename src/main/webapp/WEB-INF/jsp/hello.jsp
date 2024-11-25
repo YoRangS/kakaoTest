@@ -7,6 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		Hello, World!
+		<h1>Response from API</h1>
+    	<p>${response}</p> <!-- Authenticating Authorization parameter values -->
 	</body>
 </html>
