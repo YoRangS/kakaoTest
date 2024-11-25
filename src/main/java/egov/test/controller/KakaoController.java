@@ -39,6 +39,7 @@ public class KakaoController {
             final String timestamp = String.valueOf(System.currentTimeMillis());
             final String nonce = "121212";
             final String apiKey = apiConfig.getApiKey();
+            System.out.println("tesT");
 
             // 서명 및 Authorization 생성
             String sign = kakaoAuthComponent.generateSignature(timestamp, nonce, apiKey);
