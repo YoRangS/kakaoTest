@@ -6,7 +6,14 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 <!-- scan component -->
-<context:component-scan base-package="egov.test"/>
+<context:component-scan base-package="egov.test.component"/>
+<context:component-scan base-package="egov.test.config"/>
+<context:component-scan base-package="egov.test.controller"/>
+
+<!-- Enable @Value for property injection -->
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="location" value="classpath:application.yml"/>
+</bean>
 
 <!-- set view resolver -->
 <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver"

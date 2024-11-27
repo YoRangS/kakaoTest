@@ -21,7 +21,7 @@
         <h3>배송자 정보</h3>
         <label for="pickupBasicAddress">Basic Address:</label><br>
         <input type="text" id="pickupBasicAddress" name="pickupBasicAddress" required><br>
-        <label for="pickupDetailAddress">Detail Address:</label><br>
+        <label for="pickupDetailAddress">Detail Address:</label><br>++99
         <input type="text" id="pickupDetailAddress" name="pickupDetailAddress"><br>
         <label for="pickupLatitude">Latitude:</label><br>
         <input type="number" step="any" id="pickupLatitude" name="pickupLatitude" required><br>

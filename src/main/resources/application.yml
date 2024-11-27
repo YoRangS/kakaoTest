@@ -3,5 +3,4 @@ api:
   url:
     auth:
       check: https://open-api-logistics.kakaomobility.com/v1/auth/check
-    
   vendor: VZQS0G
