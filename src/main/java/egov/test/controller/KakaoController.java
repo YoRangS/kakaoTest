@@ -19,13 +19,11 @@ import egov.test.config.ApiConfig;
 public class KakaoController {
 	
 	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired
 	private KakaoAuthComponent kakaoAuthComponent;
 	
-	@Autowired
 	private ApiConfig apiConfig;
+	
+	private RestTemplate restTemplate = new RestTemplate();
 	
 	@RequestMapping("/quickHome.do")
 	public String quickHome() {
@@ -42,13 +40,14 @@ public class KakaoController {
 	
 	@RequestMapping(value = "/hello.do")
 	public String hello(Model model) {
+		apiConfig = ApiConfig.getApiConfigSingleton();
 		String authorization = null;
 		String apiResponse = null;  // API 응답을 저장할 변수
 		try {
             // 입력값
             final String timestamp = String.valueOf(System.currentTimeMillis());
             final String nonce = "121212";
-            final String apiKey = apiConfig.getApiKey();
+            final String apiKey = apiConfig.getKeyValue();
             System.out.println("tesT");
 
             // 서명 및 Authorization 생성
@@ -59,14 +58,14 @@ public class KakaoController {
             System.out.println("Authorization: " + authorization);
             
             // API 호출을 위한 URL 설정
-            String apiUrl = apiConfig.getApiUrlAuthCheck();
+            String apiUrl = apiConfig.getHostURL();
 
             // HttpHeaders 객체 생성
             HttpHeaders headers = new HttpHeaders();
             headers.set("accept", "application/json");
             headers.set("Authorization", authorization);  // 동적으로 생성된 Authorization
             headers.set("Content-Type", "application/json");
-            headers.set("vendor", apiConfig.getVendor());  // vendor_id 설정
+            headers.set("vendor", apiConfig.getVendorID());  // vendor_id 설정
 
             // HttpEntity 생성 (헤더 포함)
             HttpEntity<String> entity = new HttpEntity<>(headers);

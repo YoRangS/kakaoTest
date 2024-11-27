@@ -175,6 +175,12 @@
 		    <artifactId>spring-webmvc</artifactId>
 		    <version>4.3.25.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.yaml</groupId>
+		    <artifactId>snakeyaml</artifactId>
+		    <version>1.33</version>
+		</dependency>
         
 	</dependencies>
 

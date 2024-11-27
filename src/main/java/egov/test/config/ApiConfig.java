@@ -1,36 +1,34 @@
 package egov.test.config;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class ApiConfig {
-	
-	@Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    private static ApiConfig apiConfig;
+    public ApiConfig(){
+        if(apiConfig != null) apiConfig = new ApiConfig();
+        else return;
+    }
+    public static ApiConfig getApiConfigSingleton(){
+        return apiConfig;
     }
 
-    @Value("${api.key}")
-    private String apiKey;
-    
-    @Value("${api.url.auth.check}")
-    private String apiUrlAuthCheck;
-    
-    @Value("${api.vendor}")
-    private String vendor;
+    /* singleton */
+    private String APIkeyValue = ApiConfigValue.APIKeyValue;
+    public String getKeyValue(){
+    	System.out.println("Key : " + this.APIkeyValue);
+        return this.APIkeyValue;
+    }
 
-    public String getApiKey() {
-        return apiKey;
+    private String vendorID = ApiConfigValue.venderID;
+    public String getVendorID(){
+    	System.out.println("Vendor : " + this.vendorID);
+        return this.vendorID;
     }
     
-    public String getApiUrlAuthCheck() {
-    	return apiUrlAuthCheck;
-    }
-    
-    public String getVendor() {
-    	return vendor;
+    private String HostURL = ApiConfigValue.HostURL;
+    public String getHostURL(){
+    	System.out.println("URL : " + this.HostURL);
+        return this.HostURL;
     }
 }
