@@ -31,7 +31,7 @@ public class KakaoAuthComponent {
     public String signature(final String timestamp, final String
     		nonce, final String apiKey)
     		      throws InvalidKeyException, NoSuchAlgorithmException {
-    		    final String plainText = timestamp + nonce + apiKey;
-    		    return signatureSHA512(plainText);
-    		  }
+	    final String plainText = timestamp + nonce + apiKey;
+	    return signatureSHA512(plainText);
+	}
 }

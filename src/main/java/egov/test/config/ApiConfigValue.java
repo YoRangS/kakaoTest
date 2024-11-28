@@ -5,5 +5,5 @@ public class ApiConfigValue {
 	
 	public static String venderID = "VZQS0G";
 	
-	public static String HostURL = "https://open-api-logistics.kakaomobility.comgoa-sandbox-service";
+	public static String HostURL = "https://open-api-logistics.kakaomobility.com/v1/auth/check";
 }

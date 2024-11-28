@@ -5,11 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApiConfig {
     private static ApiConfig apiConfig;
-    public ApiConfig(){
-        if(apiConfig != null) apiConfig = new ApiConfig();
-        else return;
-    }
+    private ApiConfig() {}
     public static ApiConfig getApiConfigSingleton(){
+    	if(apiConfig == null) apiConfig = new ApiConfig();
         return apiConfig;
     }
 
