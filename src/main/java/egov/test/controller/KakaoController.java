@@ -27,7 +27,7 @@ public class KakaoController {
 	
 	@RequestMapping("/quickHome.do")
 	public String quickHome() {
-		return "/jsp/quickHome";
+		return "/quickHome";
 	}
 	
 	@RequestMapping("/test")
