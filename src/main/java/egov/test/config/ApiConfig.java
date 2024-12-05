@@ -24,9 +24,15 @@ public class ApiConfig {
         return this.vendorID;
     }
     
+    private String AuthURL = ApiConfigValue.AuthURL;
+    public String getAuthURL() {
+    	System.out.println("AuthURL : " + this.AuthURL);
+        return this.AuthURL;
+    }
+    
     private String HostURL = ApiConfigValue.HostURL;
     public String getHostURL(){
-    	System.out.println("URL : " + this.HostURL);
+    	System.out.println("HostURL : " + this.HostURL);
         return this.HostURL;
     }
 }
