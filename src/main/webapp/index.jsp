@@ -7,5 +7,7 @@
 	</head>
 	<body>
 		<a href="hello.do">Hello World</a>
+		<a href="quickHome.do">quickHome</a>
+		<a href="quickCheck.do">quickCheck</a>
 	</body>
 </html>

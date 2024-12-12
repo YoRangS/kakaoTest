@@ -18,6 +18,11 @@
 <url-pattern>*.do</url-pattern>
 </filter-mapping>
 
+<filter-mapping>
+<filter-name>encodingFilter</filter-name>
+<url-pattern>/*</url-pattern>
+</filter-mapping>
+
 <!-- Spring  context configuration -->
 <context-param>
 <param-name>contextConfigLocation</param-name>

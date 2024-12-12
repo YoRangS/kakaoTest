@@ -1,5 +1,8 @@
 package egov.test.controller;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
@@ -40,6 +44,11 @@ public class KakaoController {
 		return "/quickHome";
 	}
 	
+	@RequestMapping("/quickCheck.do")
+	public String quickCheck() {
+		return "/quickCheck";
+	}
+	
 	@RequestMapping("/test")
 	@GetMapping("/{name}")
 	public String testFunction(@PathVariable String name) {
@@ -48,21 +57,27 @@ public class KakaoController {
 		return returnValue;
 	}
 	
+	public String getAuthorization() throws InvalidKeyException, NoSuchAlgorithmException {
+		// 입력값
+        final String timestamp = String.valueOf(System.currentTimeMillis());
+        final String nonce = "121212";
+        final String apiKey = apiConfig.getKeyValue();
+        System.out.println("tesT");
+
+        // 서명 및 Authorization 생성
+        String sign = kakaoAuthComponent.generateSignature(timestamp, nonce, apiKey);
+        String authorization = kakaoAuthComponent.generateAuthorization(timestamp, nonce, sign);
+        
+        return authorization;
+	}
+	
 	// Authorization 생성 및 검증
 	@RequestMapping(value = "/hello.do")
 	public String hello(Model model) {
 		String authorization = null;
 		String apiResponse = null;  // API 응답을 저장할 변수
 		try {
-            // 입력값
-            final String timestamp = String.valueOf(System.currentTimeMillis());
-            final String nonce = "121212";
-            final String apiKey = apiConfig.getKeyValue();
-            System.out.println("tesT");
-
-            // 서명 및 Authorization 생성
-            String sign = kakaoAuthComponent.generateSignature(timestamp, nonce, apiKey);
-            authorization = kakaoAuthComponent.generateAuthorization(timestamp, nonce, sign);
+            authorization = getAuthorization();
 
             // Authorization 값 확인
             System.out.println("Authorization: " + authorization);
@@ -107,45 +122,7 @@ public class KakaoController {
         	final String API_ENDPOINT = apiConfig.getHostURL() + "/api/v2/orders";
             final String VENDOR_ID = apiConfig.getVendorID();
             
-            // Authorization 동적으로 생성
-            final String timestamp = String.valueOf(System.currentTimeMillis());
-            final String nonce = "121212"; // 고유값 (임의로 지정)
-            final String apiKey = apiConfig.getKeyValue();
-            String sign = kakaoAuthComponent.generateSignature(timestamp, nonce, apiKey);
-            final String authorization = kakaoAuthComponent.generateAuthorization(timestamp, nonce, sign);
-            
-            // JSON 데이터 생성
-//            JSONObject json = new JSONObject();
-//            json.put("partnerOrderId", orderVO.getPartnerOrderId());
-//            json.put("orderType", orderVO.getOrderType());
-//            json.put("pickup", new JSONObject()
-//                    .put("location", new JSONObject()
-//                            .put("basicAddress", orderVO.getPickupBasicAddress())
-//                            .put("detailAddress", orderVO.getPickupDetailAddress())
-//                            .put("latitude", orderVO.getPickupLatitude())
-//                            .put("longitude", orderVO.getPickupLongitude()))
-//                    .put("contact", new JSONObject()
-//                            .put("name", orderVO.getPickupContactName())
-//                            .put("phone", orderVO.getPickupContactPhone())));
-//            json.put("dropoff", new JSONObject()
-//                    .put("location", new JSONObject()
-//                            .put("basicAddress", orderVO.getDropoffBasicAddress())
-//                            .put("detailAddress", orderVO.getDropoffDetailAddress())
-//                            .put("latitude", orderVO.getDropoffLatitude())
-//                            .put("longitude", orderVO.getDropoffLongitude()))
-//                    .put("contact", new JSONObject()
-//                            .put("name", orderVO.getDropoffContactName())
-//                            .put("phone", orderVO.getDropoffContactPhone())));
-//            json.put("productInfo", new JSONObject()
-//                    .put("trayCount", orderVO.getTrayCount())
-//                    .put("size", orderVO.getSize())
-//                    .put("totalPrice", orderVO.getProductPrice() * orderVO.getProductQuantity())
-//                    .put("products", new JSONArray()
-//                    		.put(new JSONObject()
-//	                            .put("name", orderVO.getProductName())
-//	                            .put("quantity", orderVO.getProductQuantity())
-//	                            .put("price", orderVO.getProductPrice())
-//	                            .put("detail", orderVO.getProductDetail()))));
+            final String authorization = getAuthorization();
             
 	        JSONObject json = new JSONObject();
 	
@@ -270,4 +247,45 @@ public class KakaoController {
         }
     }
 	
+	@GetMapping("/testtest.do")
+	public String test2() {
+		return "/quickHome";
+	}
+	
+	
+	@GetMapping("/order/{partnerOrderId}.do")
+	public String orderCheck(@PathVariable String partnerOrderId, Model model) {
+		try {
+			ApiConfig apiconfig = ApiConfig.getApiConfigSingleton();
+			
+			String authorization = getAuthorization();
+			String vendorID = apiConfig.getVendorID();
+			
+			// API 호출을 위한 URL 설정
+            String apiUrl = apiConfig.getHostURL() + "/api/v2/orders/" + partnerOrderId;
+
+            // HttpHeaders 객체 생성
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("accept", "application/json");
+            headers.set("Authorization", authorization);  // 동적으로 생성된 Authorization
+            headers.set("Content-Type", "application/json");
+            headers.set("vendor", apiConfig.getVendorID());  // vendor_id 설정
+
+            // HttpEntity 생성 (헤더 포함)
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            // GET 요청 보내기
+            ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+            
+            // 응답 처리
+            model.addAttribute("responseCode", response.getStatusCodeValue());
+            model.addAttribute("responseBody", response.getBody());
+            
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("responseBody", "API 요청 중 오류 발생: " + e.getMessage());
+        }
+		
+		return "result";
+	}
 }
