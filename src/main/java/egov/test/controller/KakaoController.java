@@ -260,7 +260,7 @@ public class KakaoController {
 			
 			String authorization = getAuthorization();
 			String vendorID = apiConfig.getVendorID();
-			
+
 			// API 호출을 위한 URL 설정
             String apiUrl = apiConfig.getHostURL() + "/api/v2/orders/" + partnerOrderId;
 

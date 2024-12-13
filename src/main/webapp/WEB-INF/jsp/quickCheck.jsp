@@ -24,7 +24,7 @@
 		//alert(ID);
 		
 		if (ID) {
-			form.action = '/order/' + ID + '.do';
+			form.action = '/kakaoTest/order/' + ID + '.do';
 			form.method = 'GET';
 			form.submit();
 		} else {
