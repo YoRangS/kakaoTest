@@ -6,8 +6,10 @@
 		<title>mvc test</title>
 	</head>
 	<body>
-		<a href="hello.do">Hello World</a>
-		<a href="quickHome.do">quickHome</a>
-		<a href="quickCheck.do">quickCheck</a>
+		<br><br>
+		<a href="hello.do">Hello World</a><br>
+		<a href="quickHome.do">quickHome</a><br>
+		<a href="quickCheck.do">quickCheck</a><br>
+		<a href="quickPrice.do">quickPrice</a><br>
 	</body>
 </html>
