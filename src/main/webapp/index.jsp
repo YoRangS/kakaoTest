@@ -11,5 +11,6 @@
 		<a href="quickHome.do">quickHome</a><br>
 		<a href="quickCheck.do">quickCheck</a><br>
 		<a href="quickPrice.do">quickPrice</a><br>
+		<a href="quickPatch.do">quickPatch</a><br>
 	</body>
 </html>
