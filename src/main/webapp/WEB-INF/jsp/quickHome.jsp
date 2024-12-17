@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Order Form</title>
+    <link href="css/quickHome.css" rel="stylesheet">
 </head>
 <body>
     <h1>Create a New Order</h1>
@@ -103,8 +104,7 @@
         <input type="number" id="productPrice" name="productPrice" required><br>
         <label for="productDetail">상품 상세 정보:</label><br>
         <textarea id="productDetail" name="productDetail"></textarea><br><br>
-
-        <button type="submit">Submit Order</button>
+		<button type="submit">Submit Order</button>
     </form>
 </body>
 </html>
