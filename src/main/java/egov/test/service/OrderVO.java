@@ -31,6 +31,9 @@ public class OrderVO {
     private int productPrice;
     private String productDetail;
     
+    private String orderStatus;
+	private String cancelBy;
+    
     public String getPartnerOrderId() {
 		return partnerOrderId;
 	}
@@ -204,5 +207,18 @@ public class OrderVO {
 	}
 	public void setProductDetail(String productDetail) {
 		this.productDetail = productDetail;
+	}
+	
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public String getCancelBy() {
+		return cancelBy;
+	}
+	public void setCancelBy(String cancelBy) {
+		this.cancelBy = cancelBy;
 	}
 }
