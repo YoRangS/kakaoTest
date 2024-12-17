@@ -3,8 +3,10 @@
 <html>
 <head>
     <title>Check Price</title>
+    <link href="css/orders.css" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
     <h1>가격 조회하기</h1>
     <form id="orderForm" method="post" action="/kakaoTest/price.do">
         <label for="orderType">주문 유형:</label><br>
@@ -91,5 +93,6 @@
 
         <button type="submit">Submit Order</button>
     </form>
+    </div>
 </body>
 </html>

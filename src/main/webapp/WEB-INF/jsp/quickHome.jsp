@@ -3,10 +3,11 @@
 <html>
 <head>
     <title>Order Form</title>
-    <link href="css/quickHome.css" rel="stylesheet">
+    <link href="css/orders.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Create a New Order</h1>
+    <div class="container">
+    <h1>새로운 주문 생성</h1>
     <form id="orderForm" method="post" action="/kakaoTest/order.do">
         <label for="partnerOrderId">연동사 주문 ID:</label><br>
         <input type="text" id="partnerOrderId" name="partnerOrderId" required><br><br>
@@ -106,5 +107,6 @@
         <textarea id="productDetail" name="productDetail"></textarea><br><br>
 		<button type="submit">Submit Order</button>
     </form>
+    </div>
 </body>
 </html>

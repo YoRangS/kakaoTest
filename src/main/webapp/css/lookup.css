@@ -1,5 +1,5 @@
 body, html {
-    margin: 1%;
+    margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -7,42 +7,21 @@ body, html {
 }
 
 .container {
-    width: 80%;
-    margin: 20px auto;
+    width: 50%;
+    margin: 50px auto;
     background: #fff;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .title {
     font-size: 24px;
     margin-bottom: 20px;
-    text-align: center;
     color: #007BFF;
 }
-
-.form-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-}
-
-.form-section h2 {
-    margin-bottom: 15px;
-    color: #0056b3;
-    font-size: 18px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 input, select, textarea {
     width: calc(100% - 20px);
     padding: 8px 10px;
@@ -57,24 +36,26 @@ input:focus, select:focus, textarea:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+    
 
-button {
+label {
+    display: block;
     font-weight: bold;
-    font-size: 15px;
-    background: #ffffff;
-    background-color: #007BFF;
-    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.btn-submit {
+    display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
     text-align: center;
 }
 
-button:hover {
-    text-decoration: underline;
+.btn-submit:hover {
     background-color: #0056b3;
-    transition: background-color 0.3s ease;
 }
-
-
