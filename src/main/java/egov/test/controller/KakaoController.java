@@ -513,8 +513,8 @@ public class KakaoController {
 
             // HttpHeaders 객체 생성
             HttpHeaders headers = new HttpHeaders();
-            headers.set("accept", "application/json");
-//            headers.set("Content-Type", "application/json");
+//            headers.set("accept", "application/json");
+            headers.set("Content-Type", "application/json");
             headers.set("Authorization", authorization);  // 동적으로 생성된 Authorization
             headers.set("vendor", apiConfig.getVendorID());  // vendor_id 설정
             
@@ -530,7 +530,12 @@ public class KakaoController {
             model.addAttribute("responseCode", response.getStatusCodeValue());
             model.addAttribute("responseBody", response.getBody());
             
-		} catch (Exception e) {
+		} catch (HttpClientErrorException e) {
+            System.out.println("HTTP Error Status Code: " + e.getStatusCode());
+            System.out.println("HTTP Error Response Body: " + e.getResponseBodyAsString());
+            e.printStackTrace();
+            model.addAttribute("responseBody", "API 요청 중 오류 발생: " + e.getMessage());
+        } catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("responseBody", "API 요청 중 오류 발생: " + e.getMessage());
         }
