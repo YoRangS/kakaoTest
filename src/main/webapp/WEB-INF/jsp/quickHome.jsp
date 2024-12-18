@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Order Form</title>
-    <link href="css/orders.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/orders.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">

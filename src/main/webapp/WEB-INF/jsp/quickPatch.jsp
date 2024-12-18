@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Patch</title>
-<link href="css/lookup.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/lookup.css" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
