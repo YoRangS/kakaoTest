@@ -3,3 +3,7 @@ logging:
     org.springframework.web: DEBUG
     org.springframework: DEBUG
     org.hibernate: ERROR
+spring:
+  web:
+    method-filter:
+      enabled: true

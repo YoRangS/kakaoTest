@@ -35,52 +35,8 @@
     <button type="button" class="btn-submit" onclick="submitForm()">조회</button>
     </form>
 	
+	
 	<script>
-	function submitForm() {
-	    const ID = document.getElementById("partnerOrderId").value;
-	    const orderStatus = document.getElementById("orderStatus").value;
-	    const cancelBy = document.getElementById("cancelBy").value;
-
-	    if (ID) {
-	        const url = '/kakaoTest/patch/' + ID + '.do';
-	        const data = {
-	            orderStatus: orderStatus,
-	            cancelBy: cancelBy
-	        };
-	
-	        const vendorId = document.getElementById("vendor").value;
-		    const authorization = document.getElementById("authorization").value;
-	
-	        fetch(url, {
-	            method: 'PATCH',
-	            headers: {
-	                'Content-Type': 'application/json',
-	                'Vendor-ID': vendorId,
-	                'Authorization': authorization
-	            },
-	            body: JSON.stringify(data)
-	        })
-	        .then(response => {
-	            if (!response.ok) {
-	                throw new Error('Network response was not ok ' + response.statusText);
-	            }
-	            return response.json();
-	        })
-	        .then(data => {
-	            console.log('Success:', data);
-	            document.getElementById("responseMessage").innerText = "Success: " + JSON.stringify(data);
-	        })
-	        .catch((error) => {
-	            console.error('Error:', error);
-	            document.getElementById("responseMessage").innerText = "Error: " + error.message;
-	        });
-	    } else {
-	        alert("Invalid ID");
-	    }
-	}
-	</script>
-	
-	<!-- <script>
 	function submitForm() {
 		const form = document.getElementById("orderPatch");
 		const ID = document.getElementById("partnerOrderId").value;
@@ -95,7 +51,7 @@
 			alert("Invaild ID");
 		}
 	}
-	</script> -->
+	</script>
 	</div>
 </body>
 </html>

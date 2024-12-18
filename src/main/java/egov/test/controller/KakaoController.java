@@ -71,6 +71,11 @@ public class KakaoController {
 		return "/quickPatch";
 	}
 	
+	@RequestMapping("/quickPicker.do")
+	public String quickPicker() {
+		return "/quickPicker";
+	}
+	
 	@RequestMapping("/test")
 	@GetMapping("/{name}")
 	public String testFunction(@PathVariable String name) {
@@ -492,5 +497,44 @@ public class KakaoController {
             
             return "result";
         }
+	}
+	
+	@GetMapping("/picker/{partnerOrderId}.do")
+	public String checkPicker(@PathVariable String partnerOrderId, Model model) {
+		try {
+			ApiConfig apiconfig = ApiConfig.getApiConfigSingleton();
+			
+			String authorization = getAuthorization();
+
+			// API 호출을 위한 URL 설정
+            String apiUrl = apiConfig.getHostURL() + "/api/v2/orders/" + partnerOrderId + "/picker";
+//            String apiUrl = apiConfig.getHostURL() + "/api/v2/orders/" + partnerOrderId;
+            System.out.println("url : " + apiUrl);
+
+            // HttpHeaders 객체 생성
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("accept", "application/json");
+//            headers.set("Content-Type", "application/json");
+            headers.set("Authorization", authorization);  // 동적으로 생성된 Authorization
+            headers.set("vendor", apiConfig.getVendorID());  // vendor_id 설정
+            
+            System.out.println("Authorization : " + authorization);
+
+            // HttpEntity 생성 (헤더 포함)
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            // GET 요청 보내기
+            ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+            
+            // 응답 처리
+            model.addAttribute("responseCode", response.getStatusCodeValue());
+            model.addAttribute("responseBody", response.getBody());
+            
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("responseBody", "API 요청 중 오류 발생: " + e.getMessage());
+        }
+		
+		return "result";
 	}
 }
