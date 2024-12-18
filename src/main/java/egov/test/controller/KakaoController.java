@@ -2,6 +2,8 @@ package egov.test.controller;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -262,8 +264,19 @@ public class KakaoController {
 
             // 응답 처리
             model.addAttribute("responseCode", response.getStatusCodeValue());
-            model.addAttribute("responseBody", response.getBody());
+//            model.addAttribute("responseBody", response.getBody());
+            JSONObject respBody = new JSONObject(response.getBody());
+            Map<String, Object> flattenedMap = flattenJson(respBody, "");
             
+        	model.addAttribute("status",flattenedMap.get("receipt.status"));
+        	model.addAttribute("orderType",flattenedMap.get("receipt.orderType"));
+        	model.addAttribute("paymentType",flattenedMap.get("receipt.priceInfo.paymentType"));
+        	model.addAttribute("orderID",flattenedMap.get("receipt.orderId"));
+        	model.addAttribute("requestID",flattenedMap.get("requestId"));
+        	model.addAttribute("totalPrice",flattenedMap.get("receipt.priceInfo.totalPrice"));
+        	model.addAttribute("partnerOrderID",flattenedMap.get("partnerOrderId"));
+        	model.addAttribute("histories",flattenedMap.get("receipt.histories"));
+        	
             return "result";
 
         } catch (Exception e) {
@@ -272,6 +285,26 @@ public class KakaoController {
             
             return "result";
         }
+    }
+	
+	public static Map<String, Object> flattenJson(JSONObject jsonObject, String parentKey) {
+        Map<String, Object> flatMap = new HashMap<>();
+
+        // Iterate through all keys of the current JSON object
+        for (String key : jsonObject.keySet()) {
+            Object value = jsonObject.get(key);
+            String newKey = parentKey.isEmpty() ? key : parentKey + "." + key;
+
+            // If the value is another JSONObject, recurse into it
+            if (value instanceof JSONObject) {
+                flatMap.putAll(flattenJson((JSONObject) value, newKey));
+            } else {
+                // Otherwise, put the key-value pair into the map
+                flatMap.put(newKey, value);
+            }
+        }
+
+        return flatMap;
     }
 	
 	@GetMapping("/testtest.do")
@@ -304,9 +337,21 @@ public class KakaoController {
             // GET 요청 보내기
             ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
             
-            // 응답 처리
+         // 응답 처리
             model.addAttribute("responseCode", response.getStatusCodeValue());
-            model.addAttribute("responseBody", response.getBody());
+//            model.addAttribute("responseBody", response.getBody());
+            JSONObject respBody = new JSONObject(response.getBody());
+            Map<String, Object> flattenedMap = flattenJson(respBody, "");
+            
+        	model.addAttribute("status",flattenedMap.get("receipt.status"));
+        	model.addAttribute("orderType",flattenedMap.get("receipt.orderType"));
+        	model.addAttribute("paymentType",flattenedMap.get("receipt.priceInfo.paymentType"));
+        	model.addAttribute("orderID",flattenedMap.get("receipt.orderId"));
+        	model.addAttribute("requestID",flattenedMap.get("requestId"));
+        	model.addAttribute("totalPrice",flattenedMap.get("receipt.priceInfo.totalPrice"));
+        	model.addAttribute("partnerOrderID",flattenedMap.get("partnerOrderId"));
+        	model.addAttribute("histories",flattenedMap.get("receipt.histories"));
+        	
             
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -414,7 +459,6 @@ public class KakaoController {
             // 응답 처리
             model.addAttribute("responseCode", response.getStatusCodeValue());
             model.addAttribute("responseBody", response.getBody());
-            
             return "result";
 
         } catch (Exception e) {

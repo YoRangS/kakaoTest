@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>mvc test</title>
-		<link href="/css/index.css" rel="stylesheet"/>
+		<link href="<%=request.getContextPath()%>/css/index.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<br><br>
