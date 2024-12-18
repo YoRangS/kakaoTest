@@ -38,9 +38,9 @@
         <h3>출발지 정보</h3>
         <!-- 출발지 위치 정보  -->
 	        <label for="pickupBasicAddress">출발지 기본주소:</label><br>
-	        <input type="text" value="한동대학교" id="pickupBasicAddress" name="pickupBasicAddress" required><br>
+	        <input type="text" value="handong" id="pickupBasicAddress" name="pickupBasicAddress" required><br>
 	        <label for="pickupDetailAddress">출발지 상세주소:</label><br>
-	        <input type="text" value="벧엘관101호" id="pickupDetailAddress" name="pickupDetailAddress"><br>
+	        <input type="text" value="bethel 101" id="pickupDetailAddress" name="pickupDetailAddress"><br>
 	        <label for="pickupLatitude">출발지 위도정보:</label><br>
 	        <input type="number" value="37.4354059" step="any" id="pickupLatitude" name="pickupLatitude" required><br>
 	        <label for="pickupLongitude">출발지 경도정보:</label><br>
@@ -54,18 +54,18 @@
         <label for="pickupWishTime">픽업 희망 시간</label><br>
         <input type="date" value="2024-12-19" id="pickupWishTime" name="pickupWishTime"><br>
         <label for="pickupContactName">출발지 이름:</label><br>
-        <input type="text" value="학교" id="pickupContactName" name="pickupContactName" required><br>
+        <input type="text" value="school" id="pickupContactName" name="pickupContactName" required><br>
         <label for="pickupContactPhone">출발지 전화번호:</label><br>
-        <input type="text" value="0531231234" id="pickupContactPhone" name="pickupContactPhone" required><br><br>
+        <input type="text" value="010-1234-4321" id="pickupContactPhone" name="pickupContactPhone" required><br><br>
 		<label for="pickupNote">출발지 메모:</label><br>
-        <input type="text" value="학교 배송지" id="pickupNote" name="pickupNote"><br><br>
+        <input type="text" value="school address" id="pickupNote" name="pickupNote"><br><br>
 
         <h3>목적지 정보</h3>
         <!-- 목적지 위치 정보  -->
 	        <label for="dropoffBasicAddress">목적지 기본주소:</label><br>
-	        <input type="text" value="서울시" id="dropoffBasicAddress" name="dropoffBasicAddress" required><br>
+	        <input type="text" value="seoul" id="dropoffBasicAddress" name="dropoffBasicAddress" required><br>
 	        <label for="dropoffDetailAddress">목적지 상세주소:</label><br>
-	        <input type="text" value="무슨 빌딩 101호" id="dropoffDetailAddress" name="dropoffDetailAddress"><br>
+	        <input type="text" value="101" id="dropoffDetailAddress" name="dropoffDetailAddress"><br>
 	        <label for="dropoffLatitude">목적지 위도정보:</label><br>
 	        <input type="number" value="37.569691" step="any" id="dropoffLatitude" name="dropoffLatitude" required><br>
 	        <label for="dropoffLongitude">목적지 경도정보:</label><br>
@@ -79,11 +79,11 @@
         <label for="dropoffWishTime">픽업 희망 시간</label><br>
         <input type="date" value="2024-12-20" id="dropoffWishTime" name="dropoffWishTime"><br>
         <label for="dropoffContactName">목적지 이름:</label><br>
-        <input type="text" value="서울시 빌딩" id="dropoffContactName" name="dropoffContactName" required><br>
+        <input type="text" value="seoul building" id="dropoffContactName" name="dropoffContactName" required><br>
         <label for="dropoffContactPhone">목적지 전화번호:</label><br>
-        <input type="text" value="021231234" id="dropoffContactPhone" name="dropoffContactPhone" required><br><br>
+        <input type="text" value="010-1234-1234" id="dropoffContactPhone" name="dropoffContactPhone" required><br><br>
 		<label for="dropoffNote">목적지 메모:</label><br>
-        <input type="text" value="테스트 목적지" id="dropoffNote" name="dropoffNote"><br><br>
+        <input type="text" value="test destination" id="dropoffNote" name="dropoffNote"><br><br>
 
         <h3>제품 정보</h3>
         <label for="trayCount">배송 상품 포장 묶음 개수</label><br>
@@ -98,13 +98,13 @@
         	<option value="L">대형</option>
         </select><br>
         <label for="productName">상품명:</label><br>
-        <input type="text" value="해산물" id="productName" name="productName" required><br>
+        <input type="text" value="seafood" id="productName" name="productName" required><br>
         <label for="productQuantity">상품 수량:</label><br>
         <input type="number" value="1" id="productQuantity" name="productQuantity" required><br>
         <label for="productPrice">상품 금액:</label><br>
         <input type="number" value="100000" id="productPrice" name="productPrice" required><br>
         <label for="productDetail">상품 상세 정보:</label><br>
-        <textarea id="productDetail" value="포항 해산물" name="productDetail"></textarea><br><br>
+        <textarea id="productDetail" name="productDetail">pohang seafood</textarea><br><br>
 		<button type="submit">Submit Order</button>
     </form>
     </div>
