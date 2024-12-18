@@ -10,7 +10,7 @@
     <h1>새로운 주문 생성</h1>
     <form id="orderForm" method="post" action="/kakaoTest/order.do">
         <label for="partnerOrderId">연동사 주문 ID:</label><br>
-        <input type="text" id="partnerOrderId" name="partnerOrderId" required><br><br>
+        <input type="text" value="1" id="partnerOrderId" name="partnerOrderId" required><br><br>
 
         <label for="orderType">주문 유형:</label><br>
         <select id="orderType" name="orderType" required>
@@ -38,13 +38,13 @@
         <h3>출발지 정보</h3>
         <!-- 출발지 위치 정보  -->
 	        <label for="pickupBasicAddress">출발지 기본주소:</label><br>
-	        <input type="text" id="pickupBasicAddress" name="pickupBasicAddress" required><br>
+	        <input type="text" value="한동대학교" id="pickupBasicAddress" name="pickupBasicAddress" required><br>
 	        <label for="pickupDetailAddress">출발지 상세주소:</label><br>
-	        <input type="text" id="pickupDetailAddress" name="pickupDetailAddress"><br>
+	        <input type="text" value="벧엘관101호" id="pickupDetailAddress" name="pickupDetailAddress"><br>
 	        <label for="pickupLatitude">출발지 위도정보:</label><br>
-	        <input type="number" step="any" id="pickupLatitude" name="pickupLatitude" required><br>
+	        <input type="number" value="37.4354059" step="any" id="pickupLatitude" name="pickupLatitude" required><br>
 	        <label for="pickupLongitude">출발지 경도정보:</label><br>
-	        <input type="number" step="any" id="pickupLongitude" name="pickupLongitude" required><br>
+	        <input type="number" value="126.74551" step="any" id="pickupLongitude" name="pickupLongitude" required><br>
         <label for="pickupLongitude">출발지 상하차 방법:</label><br> <!-- 퀵, size:L 일 경우만 설정 -->
         <select id="pickupLoadingMethod" name="pickupLoadingMethod">
         	<option value="PICKER">기사님이 상하차</option>
@@ -52,24 +52,24 @@
         	<option value="TOGETHER">같이 상하차</option>
         </select><br>
         <label for="pickupWishTime">픽업 희망 시간</label><br>
-        <input type="date" id="pickupWishTime" name="pickupWishTime"><br>
+        <input type="date" value="2024-12-19" id="pickupWishTime" name="pickupWishTime"><br>
         <label for="pickupContactName">출발지 이름:</label><br>
-        <input type="text" id="pickupContactName" name="pickupContactName" required><br>
+        <input type="text" value="학교" id="pickupContactName" name="pickupContactName" required><br>
         <label for="pickupContactPhone">출발지 전화번호:</label><br>
-        <input type="text" id="pickupContactPhone" name="pickupContactPhone" required><br><br>
+        <input type="text" value="0531231234" id="pickupContactPhone" name="pickupContactPhone" required><br><br>
 		<label for="pickupNote">출발지 메모:</label><br>
-        <input type="text" id="pickupNote" name="pickupNote"><br><br>
+        <input type="text" value="학교 배송지" id="pickupNote" name="pickupNote"><br><br>
 
         <h3>목적지 정보</h3>
         <!-- 목적지 위치 정보  -->
 	        <label for="dropoffBasicAddress">목적지 기본주소:</label><br>
-	        <input type="text" id="dropoffBasicAddress" name="dropoffBasicAddress" required><br>
+	        <input type="text" value="서울시" id="dropoffBasicAddress" name="dropoffBasicAddress" required><br>
 	        <label for="dropoffDetailAddress">목적지 상세주소:</label><br>
-	        <input type="text" id="dropoffDetailAddress" name="dropoffDetailAddress"><br>
+	        <input type="text" value="무슨 빌딩 101호" id="dropoffDetailAddress" name="dropoffDetailAddress"><br>
 	        <label for="dropoffLatitude">목적지 위도정보:</label><br>
-	        <input type="number" step="any" id="dropoffLatitude" name="dropoffLatitude" required><br>
+	        <input type="number" value="37.569691" step="any" id="dropoffLatitude" name="dropoffLatitude" required><br>
 	        <label for="dropoffLongitude">목적지 경도정보:</label><br>
-	        <input type="number" step="any" id="dropoffLongitude" name="dropoffLongitude" required><br>
+	        <input type="number" value="126.825791"step="any" id="dropoffLongitude" name="dropoffLongitude" required><br>
         <label for="dropoffLongitude">목적지 상하차 방법:</label><br> <!-- 퀵, size:L 일 경우만 설정 -->
         <select id="dropoffLoadingMethod" name="dropoffLoadingMethod">
         	<option value="PICKER">기사님이 상하차</option>
@@ -77,19 +77,19 @@
         	<option value="TOGETHER">같이 상하차</option>
         </select><br>
         <label for="dropoffWishTime">픽업 희망 시간</label><br>
-        <input type="date" id="dropoffWishTime" name="dropoffWishTime"><br>
+        <input type="date" value="2024-12-20" id="dropoffWishTime" name="dropoffWishTime"><br>
         <label for="dropoffContactName">목적지 이름:</label><br>
-        <input type="text" id="dropoffContactName" name="dropoffContactName" required><br>
+        <input type="text" value="서울시 빌딩" id="dropoffContactName" name="dropoffContactName" required><br>
         <label for="dropoffContactPhone">목적지 전화번호:</label><br>
-        <input type="text" id="dropoffContactPhone" name="dropoffContactPhone" required><br><br>
+        <input type="text" value="021231234" id="dropoffContactPhone" name="dropoffContactPhone" required><br><br>
 		<label for="dropoffNote">목적지 메모:</label><br>
-        <input type="text" id="dropoffNote" name="dropoffNote"><br><br>
+        <input type="text" value="테스트 목적지" id="dropoffNote" name="dropoffNote"><br><br>
 
         <h3>제품 정보</h3>
         <label for="trayCount">배송 상품 포장 묶음 개수</label><br>
-        <input type="number" id="trayCount" name="trayCount"><br>
+        <input type="number" value="1" id="trayCount" name="trayCount"><br>
         <label for="totalPrice">배송 상품 가격</label><br>
-        <input type="number" id="totalPrice" name="totalPrice"><br>
+        <input type="number" value="100000" id="totalPrice" name="totalPrice"><br>
         <label for="size">상품 크기</label>
         <select id="size" name="size">
         	<option value="XS">서류, 초소형</option>
@@ -98,13 +98,13 @@
         	<option value="L">대형</option>
         </select><br>
         <label for="productName">상품명:</label><br>
-        <input type="text" id="productName" name="productName" required><br>
+        <input type="text" value="해산물" id="productName" name="productName" required><br>
         <label for="productQuantity">상품 수량:</label><br>
-        <input type="number" id="productQuantity" name="productQuantity" required><br>
+        <input type="number" value="1" id="productQuantity" name="productQuantity" required><br>
         <label for="productPrice">상품 금액:</label><br>
-        <input type="number" id="productPrice" name="productPrice" required><br>
+        <input type="number" value="100000" id="productPrice" name="productPrice" required><br>
         <label for="productDetail">상품 상세 정보:</label><br>
-        <textarea id="productDetail" name="productDetail"></textarea><br><br>
+        <textarea id="productDetail" value="포항 해산물" name="productDetail"></textarea><br><br>
 		<button type="submit">Submit Order</button>
     </form>
     </div>
