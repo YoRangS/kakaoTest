@@ -426,6 +426,15 @@ public class KakaoController {
 
                 System.out.println("Response Status Code: " + response.getStatusCode());
                 System.out.println("Response Body: " + response.getBody());
+
+                model.addAttribute("responseCode", response.getStatusCode());
+                JSONObject respBody = new JSONObject(response.getBody());
+                Map<String, Object> flattenedMap = flattenJson(respBody, "");
+                model.addAttribute("requestId",flattenedMap.get("requestId"));
+                model.addAttribute("totalPrice",flattenedMap.get("totalPrice"));
+                
+                
+                
             } catch (HttpClientErrorException e) {
                 System.out.println("HTTP Error Status Code: " + e.getStatusCode());
                 System.out.println("HTTP Error Response Body: " + e.getResponseBodyAsString());
@@ -456,16 +465,14 @@ public class KakaoController {
             if (response == null) System.out.println("response is null");
             else System.out.println("response is not null");
 
-            // 응답 처리
-            model.addAttribute("responseCode", response.getStatusCodeValue());
-            model.addAttribute("responseBody", response.getBody());
-            return "result";
+            
+            return "price";
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error: " + e.getMessage());
             
-            return "result";
+            return "price";
         }
 	}
 	
