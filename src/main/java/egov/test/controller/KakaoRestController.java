@@ -66,11 +66,51 @@ public class KakaoRestController {
 	}
 	
 	
-	@GetMapping("/{name}")
+	@GetMapping("/test/{name}")
 	public String testFunction(@PathVariable String name) {
 		String returnValue = "test return value RESTAPI: " + name;
 		
 		return returnValue;
+	}
+	
+	@GetMapping("/hello")
+	public String hello(Model model) {
+		String authorization = null;
+		String apiResponse = null;  // API 응답을 저장할 변수
+		try {
+            authorization = getAuthorization();
+
+            // Authorization 값 확인
+            System.out.println("Authorization: " + authorization);
+            
+            // API 호출을 위한 URL 설정
+            String apiUrl = apiConfig.getAuthURL();
+
+            // HttpHeaders 객체 생성
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("accept", "application/json");
+            headers.set("Authorization", authorization);  // 동적으로 생성된 Authorization
+            headers.set("Content-Type", "application/json");
+            headers.set("vendor", apiConfig.getVendorID());  // vendor_id 설정
+
+            // HttpEntity 생성 (헤더 포함)
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            // GET 요청 보내기
+            ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+
+         // 응답 본문을 model에 저장
+            apiResponse = response.getBody();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 예외 발생 시 메시지 저장
+            apiResponse = "API 요청 중 오류 발생: " + e.getMessage();
+        }
+
+
+        // "hello" 뷰 이름을 반환
+        return apiResponse;
 	}
 	
 	@RequestMapping(value = "/orderJson.do", method = RequestMethod.POST)
