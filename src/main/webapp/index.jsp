@@ -16,7 +16,7 @@
 		<a href="quickCheck.do">quickCheck</a><br>
 		<a href="quickPrice.do">quickPrice</a><br>
 		<!-- <a href="quickPatch.do">quickPatch</a><br> -->
-		<a href="quickPicker.do">quickPicker</a><br>
+	<!-- <a href="quickPicker.do">quickPicker</a><br>  작동 안함 -->	
 		</div>
 	</body>
 </html>
